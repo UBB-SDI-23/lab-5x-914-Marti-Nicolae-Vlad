@@ -21,7 +21,7 @@ export const AddDirector = () => {
     const addDirector = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
         try {
-            await axios.post(`${BACKEND_API_URL}/directors/`, director, {
+            await axios.post(`../api/directors/`, director, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

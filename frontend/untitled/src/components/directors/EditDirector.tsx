@@ -25,7 +25,8 @@ export const EditDirector = () => {
     const editDirector = async (event: { preventDefault: () => void }) => {
             event.preventDefault();
             try {
-                await axios.patch(`${BACKEND_API_URL}/directors/${dirID}/`, director, {
+                // await axios.patch(`${BACKEND_API_URL}/directors/${dirID}/`, director, {
+                await axios.patch(`../api/directors/${dirID}/`, director, {
                     headers: {
                         'Content-Type': 'application/json'
                     }

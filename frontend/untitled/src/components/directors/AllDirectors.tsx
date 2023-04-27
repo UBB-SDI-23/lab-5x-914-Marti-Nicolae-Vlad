@@ -30,7 +30,8 @@ export const AllDirectors = () => {
     let [input, setInput] = useState<number | undefined>();
     useEffect(() => {
         setLoading(true);
-        fetch(`${BACKEND_API_URL}/directors/`)
+        // fetch(`${BACKEND_API_URL}/directors/`)
+        fetch(`../api/directors/`)
             .then(async (response) => (await response.json()).data)
             .then((data) => {
                 setDirectors(data);

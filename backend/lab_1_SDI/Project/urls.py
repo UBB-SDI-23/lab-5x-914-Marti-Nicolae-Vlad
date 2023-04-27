@@ -28,6 +28,6 @@ urlpatterns = [
          name='schema-swagger-ui'),  # <-- Here
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),  # <-- Here
-    path("", include("Project.tv_series.urls")),
+    path("api/", include("Project.tv_series.urls")),
     path("admin/", admin.site.urls),
 ]

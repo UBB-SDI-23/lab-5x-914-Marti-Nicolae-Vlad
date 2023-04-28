@@ -31,7 +31,7 @@ export const AllDirectors = () => {
     useEffect(() => {
         setLoading(true);
         // fetch(`${BACKEND_API_URL}/directors/`)
-        fetch(`../api/directors/`)
+        fetch(`../../api/directors/`)
             .then(async (response) => (await response.json()).data)
             .then((data) => {
                 setDirectors(data);

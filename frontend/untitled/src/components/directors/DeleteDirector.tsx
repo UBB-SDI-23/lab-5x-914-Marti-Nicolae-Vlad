@@ -11,7 +11,7 @@ export const DeleteDirector = () => {
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		// await axios.delete(`${BACKEND_API_URL}/directors/${dirID}/`);
-		await axios.delete(`../api/directors/${dirID}/`);
+		await axios.delete(`../../api/directors/${dirID}/`);
 		navigate("/directors");
 	};
 

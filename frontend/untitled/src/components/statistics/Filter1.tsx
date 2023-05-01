@@ -28,7 +28,7 @@ export const Filter1 = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`../api/directors/filter/${input}/`)
+        fetch(`../../api/directors/filter/${input}/`)
             .then(async (response) => (await response.json()).data)
             .then((data) => {
                 setDirectors(data);

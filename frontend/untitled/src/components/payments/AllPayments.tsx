@@ -13,7 +13,9 @@ import {
 } from "@mui/material";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Director} from "../../models/Director";
+import {Actor} from "../../models/Actor";
+import {TvSerie} from "../../models/TvSerie";
+import {Payment} from "../../models/Payment";
 import {BACKEND_API_URL} from "../../constants";
 import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
@@ -23,18 +25,18 @@ import axios from "axios"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
-export const AllDirectors = () => {
+export const AllPayments = () => {
     const [loading, setLoading] = useState(false);
-    const [directors, setDirectors] = useState<Director[]>([]);
+    const [payments, setPayments] = useState<Payment[]>([]);
     const [order, setOrder] = useState("asc");
     let [input, setInput] = useState<number | undefined>();
     useEffect(() => {
         setLoading(true);
-        fetch(`${BACKEND_API_URL}/directors/`)
-        // fetch(`../api/directors/`)
+        fetch(`${BACKEND_API_URL}/payments/`)
+        // fetch(`../api/payments/`)
             .then(async (response) => (await response.json()).data)
             .then((data) => {
-                setDirectors(data);
+                setPayments(data);
                 setLoading(false);
             })
 
@@ -47,17 +49,17 @@ export const AllDirectors = () => {
     }, []);
     const sorting = () => {
         if (order === "asc") {
-            const sorted = [...directors].sort((director1, director2) =>
-                    director1.name.toLowerCase() > director2.name.toLowerCase() ? 1 : -1
+            const sorted = [...payments].sort((director1, director2) =>
+                    director1.salary > director2.salary ? 1 : -1
             );
-            setDirectors(sorted);
+            setPayments(sorted);
             setOrder("des");
         }
         if (order === "des") {
-            const sorted = [...directors].sort((director1, director2) =>
-                director1.name.toLowerCase() < director2.name.toLowerCase() ? 1 : -1
+            const sorted = [...payments].sort((director1, director2) =>
+                director1.salary < director2.salary ? 1 : -1
             );
-            setDirectors(sorted);
+            setPayments(sorted);
             setOrder("asc");
         }
     }
@@ -66,99 +68,79 @@ export const AllDirectors = () => {
 
     return (
         <Container>
-            <h1>All Directors</h1>
-            <div style={{ display: "flex", alignItems: "center", marginLeft: "900px", marginBottom: "-30px" }}>
-            <TextField
-                label="Min Age"
-                onChange={(event) => {
-						setInput( parseInt(event.target.value))}}
-                InputProps={{ style: { color: "grey" } }}
-                InputLabelProps={{style: {color: 'darkgrey'}}}
-                style={{ marginRight: "20px", color:'whitesmoke' }}
-            />
-            <Button component={Link} sx={{ mr: 3 }} to={`/directors/filter/${input}/`} variant="contained" style={{color:"whitesmoke"}}>
-                Filter
-            </Button>
-            </div>
-            <IconButton component={Link} sx={{mr: 3}} to={`/`}>
-                <Tooltip title="Back" arrow>
-                    <ArrowBackIcon color="primary"/>
-                </Tooltip>
+            <h1>All Payments</h1>
 
-            </IconButton>
             {loading && <CircularProgress/>}
-            {!loading && directors.length === 0 && <p>No Directors found</p>}
+            {!loading && payments.length === 0 && <p>No Payments found</p>}
             {!loading && (
-                <IconButton component={Link} sx={{mr: 3}} to={`/directors/add/`}>
-                    <Tooltip title="Add new director" arrow>
+                <IconButton component={Link} sx={{mr: 3}} to={`/payments/add/`}>
+                    <Tooltip title="Add new payment" arrow>
                         <AddIcon color="primary"/>
                     </Tooltip>
                 </IconButton>
-
-
 
 
             )}
 
 
 
-            {!loading && directors.length > 0 && (
+            {!loading && payments.length > 0 && (
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>#</TableCell>
-                                <TableCell onClick={() => sorting()} align="center">Name</TableCell>
-                                <TableCell align="center">Age</TableCell>
-                                <TableCell align="center">Residence</TableCell>
-                                <TableCell align="center">Phone Number</TableCell>
-                                <TableCell align="center">Email</TableCell>
+                                <TableCell onClick={() => sorting()} align="center">Actor</TableCell>
+                                <TableCell align="center">Tv Serie</TableCell>
+                                <TableCell align="center">Salary</TableCell>
+                                <TableCell align="center">Days Worked</TableCell>
+                                {/*<TableCell align="center">Email</TableCell>*/}
                                 {/*<TableCell align="center">Transmission Type</TableCell>*/}
                                 <TableCell align="center">Operations</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {directors.map((director, index) => (
-                                <TableRow key={director.id}>
+                            {payments.map((payment, index) => (
+                                <TableRow key={payment.id}>
                                     <TableCell component="th" scope="row">
                                         {index + 1}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {/*<Link to={`/director/${director.id}/`} title="View director details">*/}
-                                        {/*    {director.name}*/}
+                                        {/*<Link to={`/cars/${payment.id}/details`} title="View payment details">*/}
+                                        {/*    {payment.model}*/}
                                         {/*</Link>*/}
-                                        {director.name}
+                                        {payment.actor_name}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.age}
+                                        {payment.tvSerie_title}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.residence}
+                                        {payment.salary}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.phone_number}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row" align="center">
-                                        {director.email}
+                                        {payment.days_worked}
                                     </TableCell>
                                     {/*<TableCell component="th" scope="row" align="center">*/}
-                                    {/*    {director.transmission_type}*/}
+                                    {/*    {payment.email}*/}
+                                    {/*</TableCell>*/}
+                                    {/*<TableCell component="th" scope="row" align="center">*/}
+                                    {/*    {payment.transmission_type}*/}
                                     {/*</TableCell>*/}
                                         <TableCell align="right">
                                         {/*<IconButton*/}
                                         {/*    component={Link}*/}
                                         {/*    sx={{mr: 3}}*/}
-                                        {/*    to={`/cars/${director.id}/details`}>*/}
-                                        {/*    <Tooltip title="View director details" arrow>*/}
+                                        {/*    to={`/cars/${payment.id}/details`}>*/}
+                                        {/*    <Tooltip title="View payment details" arrow>*/}
                                         {/*        <ReadMoreIcon color="primary"/>*/}
                                         {/*    </Tooltip>*/}
                                         {/*</IconButton>*/}
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/edit`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit`}>
                                             <EditIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/delete`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
                                         </IconButton>
                                     </TableCell>

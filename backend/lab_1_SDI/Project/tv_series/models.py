@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.db import models
 from rest_framework.exceptions import ValidationError
-
+from dataclasses import dataclass
 
 # Create your models here.
 def integer_poz_validator(value):
@@ -72,4 +72,29 @@ class Payment(models.Model):
     def __str__(self):
         return 'Payment for ' + self.actor.name + ' in ' + self.tv_serie.title
 
+@dataclass
+class ActorDto:
+    id: int
+    name: str
+    age: int
+    nr_awards: int
+    phone_number: str
+    email: str
+
+@dataclass
+class TvSerieDto:
+
+    title: str
+    director_name: str
+    year_published: int
+    nr_seasons: int
+    cast: str
+    rating: float
+
+@dataclass
+class PaymentDto:
+    actor_name: str
+    tvSerie_name: str
+    salary: int
+    days_worked: int
 

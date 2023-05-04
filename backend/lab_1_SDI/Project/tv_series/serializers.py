@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from .models import TvSerie, Director, Actor, Payment
+from .models import TvSerie, Director, Actor, Payment, PaymentDto
 
 
 class TvSerieSerializer(serializers.ModelSerializer):
@@ -76,7 +76,17 @@ class PaymentSerializer(serializers.ModelSerializer):
         return data
     class Meta:
         model = Payment
-        fields = "__all__"
+        fields = ['actor', 'tv_serie', 'salary', 'days_worked']
+
+
+# class PaymentSerializer2(serializers.ModelSerializer):
+#     def validate(self, data):
+#         if data['salary'] < 0:
+#             raise ValidationError("seasons can not be negative")
+#         return data
+#     class Meta:
+#         model = PaymentDto
+#         fields = ['actor_name', 'tvSerie_title', 'salary', 'days_worked']
 
 class StatisticsSerializer(serializers.ModelSerializer):
     avg_stars = serializers.IntegerField(read_only=True)

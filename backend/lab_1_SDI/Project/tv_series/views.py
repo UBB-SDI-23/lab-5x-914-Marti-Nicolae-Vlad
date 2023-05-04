@@ -1,10 +1,12 @@
+from dataclasses import asdict
+
 from django.db.models import Avg, Count
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from .models import TvSerie, Director, Actor, Payment
+from .models import TvSerie, Director, Actor, Payment, PaymentDto, TvSerieDto
 from .serializers import TvSerieSerializer, ActorSerializer, DirectorSerializer, TvSerieSerializerId, PaymentSerializer, \
-    StatisticsSerializer, StatisticsSerializer2
+    StatisticsSerializer, StatisticsSerializer2, PaymentSerializer2
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
@@ -55,8 +57,22 @@ class TvSeriesList(APIView):
             serializer = TvSerieSerializerId(serie)
             return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
         items = TvSerie.objects.all()
-        serializer = TvSerieSerializer(items, many=True)
-        return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+
+        tv_serieDto = []
+        for tvserie in items:
+            dto = TvSerieDto(
+                title = tvserie.title,
+                director_name = tvserie.director.name,
+                year_published = tvserie.year_published,
+                nr_seasons = tvserie.nr_seasons,
+                cast = tvserie.cast,
+                rating = tvserie.rating
+            )
+            tv_serieDto.append(asdict(dto))
+        return Response(tv_serieDto)
+
+        # serializer = TvSerieSerializer(items, many=True)
+        # return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 
     def post(self, request):
 
@@ -241,6 +257,19 @@ class PaymentsList(APIView):
             serializer = PaymentSerializer(serie)
             return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
         items = Payment.objects.all()
+
+        payments_dto = []
+        for payment in items:
+            dto = PaymentDto(
+                actor_name=payment.actor.name,
+                tvSerie_name=payment.tv_serie.title,
+                salary=payment.salary,
+                days_worked=payment.days_worked
+            )
+            payments_dto.append(asdict(dto))
+        # return Response(payments_dto)
+
+        # serializer = PaymentSerializer2(payments_dto, many=True)
         serializer = PaymentSerializer(items, many=True)
         return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 

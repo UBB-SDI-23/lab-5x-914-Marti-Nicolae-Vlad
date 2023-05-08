@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from .models import TvSerie, Director, Actor, Payment, PaymentDto, TvSerieDto
 from .serializers import TvSerieSerializer, ActorSerializer, DirectorSerializer, TvSerieSerializerId, PaymentSerializer, \
-    StatisticsSerializer, StatisticsSerializer2, PaymentSerializer2
+    StatisticsSerializer, StatisticsSerializer2
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
@@ -336,4 +336,5 @@ class ManyStatistics(APIView):
 
             serializer = TvSerieSerializer(movies, many=True)
 
-            return Response({"data": serializer.data})
+            return Response({"data": serializer.data})  
+

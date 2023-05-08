@@ -1,4 +1,4 @@
-export interface Director{
+export interface Director    {
     id?: number;
     name: string;
     age: number;

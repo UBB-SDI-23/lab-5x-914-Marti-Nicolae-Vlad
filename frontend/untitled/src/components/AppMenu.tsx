@@ -7,6 +7,7 @@ import {useState} from "react";
 import {Payment, Star} from "@mui/icons-material";
 import {Filter1} from "./statistics/Filter1";
 import {AllPayments} from "./payments/AllPayments";
+import {AllActors} from "./actors/AllActors"
 // import {Filter1} from "./statistics/Filter1";
 
 export const AppMenu = () => {
@@ -31,7 +32,7 @@ export const AppMenu = () => {
                                 <DirectorIcon/>
                             </IconButton>
                             <Typography variant="h6" component="div" sx={{mr: 5}}>
-                                Director management
+                                Directors management
                             </Typography>
                             <Button
                                 // variant={path.startsWith("/cars") ? "outlined" : "text"}
@@ -56,7 +57,7 @@ export const AppMenu = () => {
                                 <DirectorIcon/>
                             </IconButton>
                             <Typography variant="h6" component="div" sx={{mr: 5}}>
-                                Payment management
+                                Payments management
                             </Typography>
                             <Button
                                 // variant={path.startsWith("/cars") ? "outlined" : "text"}
@@ -68,6 +69,31 @@ export const AppMenu = () => {
                                 onClick={() => setState(2)}
                             >
                                 Payments
+                            </Button>
+                        {/*</Toolbar>*/}
+                        <IconButton
+                                component={Link}
+                                to="/"
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="school"
+                                sx={{mr: 2}}>
+                                <DirectorIcon/>
+                            </IconButton>
+                            <Typography variant="h6" component="div" sx={{mr: 5}}>
+                                Actors management
+                            </Typography>
+                            <Button
+                                // variant={path.startsWith("/cars") ? "outlined" : "text"}
+                                to="/"
+                                component={Link}
+                                color="inherit"
+                                sx={{mr: 5}}
+                                startIcon={<Director/>}
+                                onClick={() => setState(4)}
+                            >
+                                Actors
                             </Button>
                         </Toolbar>
                         {/*<Toolbar>*/}
@@ -134,6 +160,18 @@ export const AppMenu = () => {
                 >
                     Back
                 </Button><Filter1/></>
+            )}
+            {state === 4 && (
+                <><Button
+                    to="/"
+                    component={Link}
+                    color="inherit"
+                    sx={{mr: 5}}
+                    startIcon={<Director/>}
+                    onClick={() => setState(0)}
+                >
+                    Back
+                </Button><AllActors/></>
             )}
         </Container>
     );

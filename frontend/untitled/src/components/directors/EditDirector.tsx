@@ -3,7 +3,7 @@ import {Container} from "@mui/system";
 import {useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {BACKEND_API_URL} from "../../constants";
-import {Director} from "../../models/Director";
+import {Payment} from "../../models/Director";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ export const EditDirector = () => {
     const {dirID: dirID} = useParams();
     const navigate = useNavigate();
 
-    const [director, setDirector] = useState<Director>({
+    const [director, setDirector] = useState<Payment>({
         id: (typeof dirID === "string" ? parseInt(dirID) : -1),
         name: "",
         age: 30,

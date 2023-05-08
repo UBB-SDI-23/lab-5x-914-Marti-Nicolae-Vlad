@@ -1,4 +1,4 @@
-export interface Payment {
+export interface Director    {
     id?: number;
     name: string;
     age: number;

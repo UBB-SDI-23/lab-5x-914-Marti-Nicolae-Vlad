@@ -337,3 +337,30 @@ class ManyStatistics(APIView):
             serializer = TvSerieSerializer(movies, many=True)
 
             return Response({"data": serializer.data})
+
+@api_view(['GET'])
+def filter_actors(request,name,format=None):
+    if request.method=='GET':
+        restaurant_list=[]
+        restaurants = Actor.objects.all()
+        for restaurant in restaurants:
+            my_model_instance = Actor.objects.get(id=restaurant.id)
+            my_field_value = my_model_instance.name
+            if my_field_value > name:
+               restaurant_list.append(restaurant)
+        serializer = ActorSerializer(restaurant_list, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def filter_tvseries(request,name,format=None):
+    if request.method=='GET':
+        restaurant_list=[]
+        restaurants = TvSerie.objects.all()
+        for restaurant in restaurants:
+            my_model_instance = TvSerie.objects.get(id=restaurant.id)
+            my_field_value = my_model_instance.name
+            if my_field_value > name:
+               restaurant_list.append(restaurant)
+        serializer = TvSerieSerializer(restaurant_list, many=True)
+        return Response(serializer.data)
+

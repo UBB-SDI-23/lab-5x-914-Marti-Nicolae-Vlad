@@ -120,21 +120,8 @@ export const AllPayments = () => {
                                     <TableCell component="th" scope="row" align="center">
                                         {payment.days_worked}
                                     </TableCell>
-                                    {/*<TableCell component="th" scope="row" align="center">*/}
-                                    {/*    {payment.email}*/}
-                                    {/*</TableCell>*/}
-                                    {/*<TableCell component="th" scope="row" align="center">*/}
-                                    {/*    {payment.transmission_type}*/}
-                                    {/*</TableCell>*/}
+
                                         <TableCell align="right">
-                                        {/*<IconButton*/}
-                                        {/*    component={Link}*/}
-                                        {/*    sx={{mr: 3}}*/}
-                                        {/*    to={`/cars/${payment.id}/details`}>*/}
-                                        {/*    <Tooltip title="View payment details" arrow>*/}
-                                        {/*        <ReadMoreIcon color="primary"/>*/}
-                                        {/*    </Tooltip>*/}
-                                        {/*</IconButton>*/}
 
                                         <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit`}>
                                             <EditIcon/>

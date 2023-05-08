@@ -1,10 +1,10 @@
-import {Director} from "./Director";
+import {Payment} from "./Director";
 
 export interface TvSerie{
 
     id?: number;
     title: string;
-    director: Director;
+    director: Payment;
     year_published: number;
     cast: string;
     rating: number;

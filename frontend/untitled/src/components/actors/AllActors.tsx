@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Payment} from "../../models/Director";
+import {Actor} from "../../models/Actor";
 import {BACKEND_API_URL} from "../../constants";
 import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
@@ -23,41 +23,34 @@ import axios from "axios"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
-export const AllDirectors = () => {
+export const AllActors = () => {
     const [loading, setLoading] = useState(false);
-    const [directors, setDirectors] = useState<Payment[]>([]);
+    const [actors, setActors] = useState<Actor[]>([]);
     const [order, setOrder] = useState("asc");
     let [input, setInput] = useState<number | undefined>();
     useEffect(() => {
         setLoading(true);
-        fetch(`${BACKEND_API_URL}/directors/`)
+        fetch(`${BACKEND_API_URL}/actors/`)
         // fetch(`../api/directors/`)
             .then(async (response) => (await response.json()).data)
             .then((data) => {
-                setDirectors(data);
+                setActors(data);
                 setLoading(false);
             })
-
-        // axios.get(`${BACKEND_API_URL}/cars`)
-        //     .then(async (response) => {
-        //         const json = await response.json();
-        //         setCars(json.data);
-        //     })
-        //     .finally(() => setLoading(false))
     }, []);
     const sorting = () => {
         if (order === "asc") {
-            const sorted = [...directors].sort((director1, director2) =>
-                    director1.name.toLowerCase() > director2.name.toLowerCase() ? 1 : -1
+            const sorted = [...actors].sort((actor1, actor2) =>
+                    actor1.name.toLowerCase() > actor2.name.toLowerCase() ? 1 : -1
             );
-            setDirectors(sorted);
+            setActors(sorted);
             setOrder("des");
         }
         if (order === "des") {
-            const sorted = [...directors].sort((director1, director2) =>
-                director1.name.toLowerCase() < director2.name.toLowerCase() ? 1 : -1
+            const sorted = [...actors].sort((actor1, actor2) =>
+                actor1.name.toLowerCase() < actor2.name.toLowerCase() ? 1 : -1
             );
-            setDirectors(sorted);
+            setActors(sorted);
             setOrder("asc");
         }
     }
@@ -67,30 +60,11 @@ export const AllDirectors = () => {
     return (
         <Container>
             <h1>All Directors</h1>
-            <div style={{ display: "flex", alignItems: "center", marginLeft: "900px", marginBottom: "-30px" }}>
-            <TextField
-                label="Min Age"
-                onChange={(event) => {
-						setInput( parseInt(event.target.value))}}
-                InputProps={{ style: { color: "grey" } }}
-                InputLabelProps={{style: {color: 'darkgrey'}}}
-                style={{ marginRight: "20px", color:'whitesmoke' }}
-            />
-            <Button component={Link} sx={{ mr: 3 }} to={`/directors/filter/${input}/`} variant="contained" style={{color:"whitesmoke"}}>
-                Filter
-            </Button>
-            </div>
-            <IconButton component={Link} sx={{mr: 3}} to={`/`}>
-                <Tooltip title="Back" arrow>
-                    <ArrowBackIcon color="primary"/>
-                </Tooltip>
-
-            </IconButton>
             {loading && <CircularProgress/>}
-            {!loading && directors.length === 0 && <p>No Directors found</p>}
+            {!loading && actors.length === 0 && <p>No Actors found</p>}
             {!loading && (
-                <IconButton component={Link} sx={{mr: 3}} to={`/directors/add/`}>
-                    <Tooltip title="Add new director" arrow>
+                <IconButton component={Link} sx={{mr: 3}} to={`/actors/add/`}>
+                    <Tooltip title="Add new actor" arrow>
                         <AddIcon color="primary"/>
                     </Tooltip>
                 </IconButton>
@@ -102,7 +76,7 @@ export const AllDirectors = () => {
 
 
 
-            {!loading && directors.length > 0 && (
+            {!loading && actors.length > 0 && (
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
                         <TableHead>
@@ -110,16 +84,15 @@ export const AllDirectors = () => {
                                 <TableCell>#</TableCell>
                                 <TableCell onClick={() => sorting()} align="center">Name</TableCell>
                                 <TableCell align="center">Age</TableCell>
-                                <TableCell align="center">Residence</TableCell>
+                                <TableCell align="center">Number of awards</TableCell>
                                 <TableCell align="center">Phone Number</TableCell>
                                 <TableCell align="center">Email</TableCell>
-                                {/*<TableCell align="center">Transmission Type</TableCell>*/}
                                 <TableCell align="center">Operations</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {directors.map((director, index) => (
-                                <TableRow key={director.id}>
+                            {actors.map((actor, index) => (
+                                <TableRow key={actor.id}>
                                     <TableCell component="th" scope="row">
                                         {index + 1}
                                     </TableCell>
@@ -127,38 +100,27 @@ export const AllDirectors = () => {
                                         {/*<Link to={`/director/${director.id}/`} title="View director details">*/}
                                         {/*    {director.name}*/}
                                         {/*</Link>*/}
-                                        {director.name}
+                                        {actor.name}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.age}
+                                        {actor.age}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.residence}
+                                        {actor.nr_awards}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.phone_number}
+                                        {actor.phone_number}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {director.email}
+                                        {actor.email}
                                     </TableCell>
-                                    {/*<TableCell component="th" scope="row" align="center">*/}
-                                    {/*    {director.transmission_type}*/}
-                                    {/*</TableCell>*/}
                                         <TableCell align="right">
-                                        {/*<IconButton*/}
-                                        {/*    component={Link}*/}
-                                        {/*    sx={{mr: 3}}*/}
-                                        {/*    to={`/cars/${director.id}/details`}>*/}
-                                        {/*    <Tooltip title="View director details" arrow>*/}
-                                        {/*        <ReadMoreIcon color="primary"/>*/}
-                                        {/*    </Tooltip>*/}
-                                        {/*</IconButton>*/}
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/edit`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/actors/${actor.id}/edit`}>
                                             <EditIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/delete`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/actors/${actor.id}/delete`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
                                         </IconButton>
                                     </TableCell>

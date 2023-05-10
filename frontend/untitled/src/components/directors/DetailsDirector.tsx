@@ -18,6 +18,7 @@ export const DetailsDirector = () => {
 			// TODO: handle errors
 			// TODO: handle loading state
             console.log(dirID);
+			alert(dirID)
 			const response = await fetch(`${BACKEND_API_URL}/directors/${dirID}`);
 			const employeeProject = await response.json();
 			setDirector(employeeProject);

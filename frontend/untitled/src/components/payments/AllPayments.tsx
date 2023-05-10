@@ -67,12 +67,7 @@ export const AllPayments = () => {
                         <AddIcon color="primary"/>
                     </Tooltip>
                 </IconButton>
-
-
             )}
-
-
-
             {!loading && payments.length > 0 && (
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">

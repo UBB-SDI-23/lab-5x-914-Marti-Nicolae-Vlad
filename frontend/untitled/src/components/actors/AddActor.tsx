@@ -3,30 +3,31 @@ import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
-import { Actor } from "../../models/Director";
+import { Actor } from "../../models/Actor";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 
-export const AddDirector = () => {
+export const AddActor = () => {
     const navigate = useNavigate();
 
-    const [director, setEmail] = useState<Actor>({
+    const [actor, setEmail] = useState<Actor>({
         name: "",
         age: 30,
-        residence: "",
+        nr_awards: 0,
         phone_number: "",
         email: "",
     });
 
-    const addDirector = async (event: { preventDefault: () => void }) => {
+    const addActor = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
         try {
-            await axios.post(`${BACKEND_API_URL}/directors/`, director, {
+            // await axios.post(`../../api/actors/`, actor, {
+            await axios.post(`${BACKEND_API_URL}/actors/`, actor, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            navigate("/directors");
+            navigate("/actors");
         } catch (error) {
             console.log(error);
         }
@@ -36,10 +37,10 @@ export const AddDirector = () => {
         <Container>
             <Card>
                 <CardContent>
-                    <IconButton component={Link} sx={{mr: 3}} to={`/directors`}>
+                    <IconButton component={Link} sx={{mr: 3}} to={`/actors`}>
                         <ArrowBackIcon/>
                     </IconButton>{" "}
-                    <form onSubmit={addDirector}>
+                    <form onSubmit={addActor}>
 
                         <TextField
                             id="model"
@@ -47,7 +48,7 @@ export const AddDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setEmail({...director, name: event.target.value})}
+                            onChange={(event) => setEmail({...actor, name: event.target.value})}
                         />
 
                         <TextField
@@ -56,16 +57,16 @@ export const AddDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setEmail({...director, age: +event.target.value})}
+                            onChange={(event) => setEmail({...actor, age: +event.target.value})}
                         />
 
                         <TextField
                             id="fuel_type"
-                            label="Residence"
+                            label="Nr of Awards"
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setEmail({...director, residence: event.target.value})}
+                            onChange={(event) => setEmail({...actor, nr_awards: +event.target.value})}
                         />
 
                         <TextField
@@ -74,7 +75,7 @@ export const AddDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setEmail({...director, phone_number: event.target.value})}
+                            onChange={(event) => setEmail({...actor, phone_number: event.target.value})}
                         />
 
                         <TextField
@@ -83,7 +84,7 @@ export const AddDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setEmail({...director, email: event.target.value})}
+                            onChange={(event) => setEmail({...actor, email: event.target.value})}
                         />
 
                         {/*<TextField*/}

@@ -23,6 +23,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import axios from "axios"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {Details} from "@mui/icons-material";
 
 
 export const AllPayments = () => {
@@ -109,10 +110,10 @@ export const AllPayments = () => {
                                         {/*<Link to={`/cars/${payment.id}/details`} title="View payment details">*/}
                                         {/*    {payment.model}*/}
                                         {/*</Link>*/}
-                                        {payment.actor_name}
+                                        {payment.actor_id}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
-                                        {payment.tvSerie_title}
+                                        {payment.tv_serie_id}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
                                         {payment.salary}
@@ -125,6 +126,10 @@ export const AllPayments = () => {
 
                                         <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit`}>
                                             <EditIcon/>
+                                        </IconButton>
+
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details`}>
+                                            <ReadMoreIcon/>
                                         </IconButton>
 
                                         <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete`}>

@@ -4,30 +4,30 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../constants";
 
-export const DeleteDirector = () => {
-	const { dirID } = useParams();
+export const DeletePayment = () => {
+	const { payID } = useParams();
 	const navigate = useNavigate();
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_API_URL}/directors/${dirID}/`);
-		// await axios.delete(`../../api/directors/${dirID}/`);
-		navigate("/directors");
+		// await axios.delete(`${BACKEND_API_URL}/directors/${dirID}/`);
+		await axios.delete(`${BACKEND_API_URL}/payments/${payID}/`);
+		navigate("/payments");
 	};
 
 	const handleCancel = (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		navigate("/directors");
+		navigate("/payment");
 	};
 
 	return (
 		<Container>
 			<Card>
 				<CardContent>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/directors`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/payments`}>
 						<ArrowBackIcon />
 					</IconButton>{" "}
-					Are you sure you want to delete this director? This cannot be undone!
+					Are you sure you want to delete this payment? This cannot be undone!
 				</CardContent>
 				<CardActions>
 					<Button onClick={handleDelete}>Delete it</Button>

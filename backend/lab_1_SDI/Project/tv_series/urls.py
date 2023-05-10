@@ -1,9 +1,11 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from . import views
+from ..tv_series import views
 from .views import * # TvSeriesList, TvSerieRatingFilter, ActorsList, DirestorsList, PaymentsList, Statistics, \
-    #ManyStatistics
+from backend.lab_1_SDI.Project.tv_series.views import TvSeriesList, TvSerieRatingFilter, ActorsList
+
+#ManyStatistics
 
 urlpatterns =[
     path('tvseries/', TvSeriesList.as_view()),
@@ -23,6 +25,7 @@ urlpatterns =[
     path('directors/<int:id>/many/', DirestorsList.as_view()),
 
     path('payments/', PaymentsList.as_view()),
+    path('payments/<int:id>/', PaymentsList.as_view()),
 
     path("directors/statistics/", Statistics.statistics),
     # path("directors/statistics2/", ManyStatistics.statistics),

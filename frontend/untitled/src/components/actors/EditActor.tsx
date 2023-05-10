@@ -10,31 +10,31 @@ import {TvSerie} from "../../models/TvSerie"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 
-export const EditDirector = () => {
-    const {dirID: dirID} = useParams();
+export const EditActor = () => {
+    const {actID: actID} = useParams();
     const navigate = useNavigate();
 
-    const [director, setDirector] = useState<Actor>({
-        id: (typeof dirID === "string" ? parseInt(dirID) : -1),
+    const [actor, setActor] = useState<Actor>({
+        id: (typeof actID === "string" ? parseInt(actID) : -1),
         name: "",
         age: 30,
-        residence: "",
+        nr_awards: 0,
         phone_number: "",
         email: "",
     });
 
 
 
-    const editDirector = async (event: { preventDefault: () => void }) => {
+    const editActor = async (event: { preventDefault: () => void }) => {
             event.preventDefault();
             try {
-                await axios.patch(`${BACKEND_API_URL}/directors/${dirID}/`, director, {
-                // await axios.patch(`../../api/directors/${dirID}/`, director, {
+                // await axios.patch(`${BACKEND_API_URL}/directors/${dirID}/`, director, {
+                await axios.patch(`${BACKEND_API_URL}/actors/${actID}/`, actor, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 });
-                navigate("/directors");
+                navigate("/actors");
             } catch (error) {
                 console.log(error);
             }
@@ -45,10 +45,10 @@ export const EditDirector = () => {
         <Container>
             <Card>
                 <CardContent>
-                    <IconButton component={Link} sx={{mr: 3}} to={`/directors`}>
+                    <IconButton component={Link} sx={{mr: 3}} to={`/actors`}>
                         <ArrowBackIcon/>
                     </IconButton>{" "}
-                    <form onSubmit={editDirector}>
+                    <form onSubmit={editActor}>
 
 
                         <TextField
@@ -57,7 +57,7 @@ export const EditDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setDirector({...director, name: event.target.value})}
+                            onChange={(event) => setActor({...actor, name: event.target.value})}
                         />
 
                         <TextField
@@ -66,16 +66,16 @@ export const EditDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setDirector({...director, age: +event.target.value})}
+                            onChange={(event) => setActor({...actor, age: +event.target.value})}
                         />
 
                         <TextField
                             id="residence"
-                            label="Residence"
+                            label="Nr of Awards"
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setDirector({...director, residence: event.target.value})}
+                            onChange={(event) => setActor({...actor, nr_awards: +event.target.value})}
                         />
 
                         <TextField
@@ -84,7 +84,7 @@ export const EditDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setDirector({...director, phone_number: event.target.value})}
+                            onChange={(event) => setActor({...actor, phone_number: event.target.value})}
                         />
 
                         <TextField
@@ -93,10 +93,10 @@ export const EditDirector = () => {
                             variant="outlined"
                             fullWidth
                             sx={{mb: 2}}
-                            onChange={(event) => setDirector({...director, email: event.target.value})}
+                            onChange={(event) => setActor({...actor, email: event.target.value})}
                         />
 
-                        <Button type="submit">Update Director</Button>
+                        <Button type="submit">Edit Actor</Button>
 
                     </form>
                 </CardContent>

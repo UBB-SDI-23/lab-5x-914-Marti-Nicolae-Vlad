@@ -1,19 +1,20 @@
-import {Autocomplete, Button, Card, CardActions, CardContent, IconButton, TextField} from "@mui/material";
-import { Container } from "@mui/system";
+import {Autocomplete, Button, Card, CardActions, CardContent, colors, IconButton, TextField} from "@mui/material";
+import {Container} from "@mui/system";
 import {useCallback, useEffect, useState} from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_API_URL } from "../../constants";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {BACKEND_API_URL} from "../../constants";
 import { Payment } from "../../models/Payment";
+import {Actor} from "../../models/Director";
 import {Actor} from "../../models/Actor"
-import {Actor} from "../../models/Director"
 import {TvSerie} from "../../models/TvSerie"
-
-import { debounce } from 'lodash';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import {debounce} from "lodash";
 
-export const AddPayment = () => {
+export const EditPayment = () => {
+    const {payID: payID} = useParams();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const first_director: Actor = {
         name: "Act1",
@@ -37,16 +38,33 @@ export const AddPayment = () => {
         rating: 5.0
     }
 
-
     const [payment, setPayment] = useState<Payment>({
+        // id: (typeof payID === "string" ? parseInt(payID) : -1),
         actor: first_actor,
         tv_serie: first_tvserie,
         // actor_id: 1,
         // tv_serie_id: 1,
-        salary: 1000,
-        days_worked: 100,
+        salary: 0,
+        days_worked: 0,
     });
 
+
+
+    const editPayment = async (event: { preventDefault: () => void }) => {
+            event.preventDefault();
+            try {
+                // await axios.patch(`${BACKEND_API_URL}/directors/${payID}/`, director, {
+                await axios.patch(`${BACKEND_API_URL}/payments/${payID}/`, payment, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                navigate("/payments");
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    ;
     const[actors, setActor] = useState<Actor[]>([]);
 
 	const fetchSuggestions = async (query: string) => {
@@ -95,20 +113,6 @@ export const AddPayment = () => {
 		};
 	}, [debouncedFetchSuggestions1]);
 
-    const addPayment = async (event: { preventDefault: () => void }) => {
-        event.preventDefault();
-        try {
-            await axios.post(`../../api/payments/`, payment, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            navigate("/payments");
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     const handleInputChange = (event: any, value: any, reason: any) => {
 		console.log("input", value, reason);
 
@@ -125,6 +129,11 @@ export const AddPayment = () => {
 		}
 	};
 
+    const handleCancel = (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+        navigate("/payments");
+    };
+
     return (
         <Container>
             <Card>
@@ -132,7 +141,7 @@ export const AddPayment = () => {
                     <IconButton component={Link} sx={{mr: 3}} to={`/payments`}>
                         <ArrowBackIcon/>
                     </IconButton>{" "}
-                    <form onSubmit={addPayment}>
+                    <form onSubmit={editPayment}>
 
                         {/*<TextField*/}
                         {/*    id="model"*/}
@@ -192,10 +201,14 @@ export const AddPayment = () => {
                         />
 
 
-                        <Button type="submit">Add Payment</Button>
+                        <Button type="submit">Edit Payment</Button>
                     </form>
                 </CardContent>
-                <CardActions></CardActions>
+                <CardActions sx={{ justifyContent: "center" }}>
+                     <Button type="submit" onClick={editPayment} variant="contained" sx={{ backgroundColor: colors.green[500] }}>Update</Button>
+                     <Button onClick={handleCancel} variant="contained" sx={{ backgroundColor: colors.green[500] }}>Cancel</Button>
+
+                </CardActions>
             </Card>
         </Container>
     );

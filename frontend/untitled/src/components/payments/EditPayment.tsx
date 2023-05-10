@@ -4,8 +4,8 @@ import {useCallback, useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {BACKEND_API_URL} from "../../constants";
 import { Payment } from "../../models/Payment";
-import {Actor} from "../../models/Director";
-import {Actor} from "../../models/Actor"
+import {Actor} from "../../models/Actor";
+import {Director} from "../../models/Director";
 import {TvSerie} from "../../models/TvSerie"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
@@ -16,7 +16,7 @@ export const EditPayment = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    const first_director: Actor = {
+    const first_director: Director = {
         name: "Act1",
         age: 30,
         residence: "asd",

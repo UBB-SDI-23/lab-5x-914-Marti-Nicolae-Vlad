@@ -4,7 +4,6 @@ import {useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {BACKEND_API_URL} from "../../constants";
 import { Payment } from "../../models/Payment";
-import {Actor} from "../../models/Director";
 import {Actor} from "../../models/Actor"
 import {TvSerie} from "../../models/TvSerie"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

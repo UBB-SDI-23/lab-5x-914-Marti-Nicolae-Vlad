@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Actor} from "../../models/Director";
+import {Director} from "../../models/Director";
 import {BACKEND_API_URL} from "../../constants";
 import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
@@ -25,7 +25,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export const AllDirectors = () => {
     const [loading, setLoading] = useState(false);
-    const [directors, setDirectors] = useState<Actor[]>([]);
+    const [directors, setDirectors] = useState<Director[]>([]);
     const [order, setOrder] = useState("asc");
     let [input, setInput] = useState<number | undefined>();
     useEffect(() => {
@@ -38,12 +38,6 @@ export const AllDirectors = () => {
                 setLoading(false);
             })
 
-        // axios.get(`${BACKEND_API_URL}/cars`)
-        //     .then(async (response) => {
-        //         const json = await response.json();
-        //         setCars(json.data);
-        //     })
-        //     .finally(() => setLoading(false))
     }, []);
     const sorting = () => {
         if (order === "asc") {

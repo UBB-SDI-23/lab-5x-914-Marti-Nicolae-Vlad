@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import { Payment } from "../../models/Payment";
 import {Actor} from "../../models/Actor"
-import {Actor} from "../../models/Director"
+import {Director} from "../../models/Director"
 import {TvSerie} from "../../models/TvSerie"
 
 import { debounce } from 'lodash';
@@ -15,14 +15,14 @@ import axios from "axios";
 export const AddPayment = () => {
     const navigate = useNavigate();
 
-    const first_director: Actor = {
+    const first_director: Director = {
         name: "Act1",
         age: 30,
         residence: "asd",
         phone_number: "12345678",
         email: "abc"
     }
-    const first_actor: Actor = {
+    const first_actor: Director = {
         name: "Act1",
         age: 30,
         nr_awards: 30,
@@ -47,11 +47,11 @@ export const AddPayment = () => {
         days_worked: 100,
     });
 
-    const[actors, setActor] = useState<Actor[]>([]);
+    const[actors, setActor] = useState<Director[]>([]);
 
 	const fetchSuggestions = async (query: string) => {
 		try {
-			const response = await axios.get<Actor[]>(
+			const response = await axios.get<Director[]>(
 				`${BACKEND_API_URL}/actors/filter/${query}`
 			);
 			const data = await response.data;

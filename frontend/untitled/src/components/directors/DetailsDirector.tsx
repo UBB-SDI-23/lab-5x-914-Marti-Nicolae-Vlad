@@ -3,14 +3,14 @@ import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
-import { Actor } from "../../models/Director";
+import { Director } from "../../models/Director";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export const DetailsDirector = () => {
 	const { dirID } = useParams();
-	const [director, setDirector] = useState<Actor>();
+	const [director, setDirector] = useState<Director>();
 
 	useEffect(() => {
 		const fetchEmployeeProject = async () => {

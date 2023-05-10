@@ -3,14 +3,14 @@ import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
-import { Actor } from "../../models/Director";
+import { Director } from "../../models/Director";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 
 export const AddDirector = () => {
     const navigate = useNavigate();
 
-    const [director, setEmail] = useState<Actor>({
+    const [director, setEmail] = useState<Director>({
         name: "",
         age: 30,
         residence: "",

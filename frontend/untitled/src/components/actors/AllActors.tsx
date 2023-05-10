@@ -120,6 +120,10 @@ export const AllActors = () => {
                                             <EditIcon/>
                                         </IconButton>
 
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/actors/${actor.id}/details`}>
+                                            <ReadMoreIcon/>
+                                        </IconButton>
+
                                         <IconButton component={Link} sx={{mr: 3}} to={`/actors/${actor.id}/delete`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
                                         </IconButton>

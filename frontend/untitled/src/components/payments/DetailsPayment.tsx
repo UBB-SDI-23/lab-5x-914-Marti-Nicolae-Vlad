@@ -18,7 +18,8 @@ export const DetailsPayment = () => {
 			// TODO: handle errors
 			// TODO: handle loading state
             console.log(payID);
-			const response = await fetch(`${BACKEND_API_URL}/payments/${payID}`);
+			alert(payID)
+			const response = await fetch(`${BACKEND_API_URL}/payments/${payID}/`);
 			const employeeProject = await response.json();
 			setPayment(employeeProject);
 		};
@@ -37,7 +38,7 @@ export const DetailsPayment = () => {
 					</Toolbar>
 					<h1>Payment's Details</h1>
 					<p>Actor: {payment?.actor.name}</p>
-					<p>Tv Serie: {payment?.tv_serie.title}</p>
+					<p>TvSerie: {payment?.tv_serie.title}</p>
 					<p>Salary: {payment?.salary}</p>
 					<p>Days Worked: {payment?.days_worked}</p>
 				</CardContent>

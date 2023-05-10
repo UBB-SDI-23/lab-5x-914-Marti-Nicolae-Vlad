@@ -152,6 +152,10 @@ export const AllDirectors = () => {
                                             <EditIcon/>
                                         </IconButton>
 
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/details`}>
+                                            <ReadMoreIcon/>
+                                        </IconButton>
+
                                         <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/delete`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
                                         </IconButton>

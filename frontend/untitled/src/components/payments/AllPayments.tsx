@@ -9,21 +9,16 @@ import {
     CircularProgress,
     Container,
     IconButton,
-    Tooltip, tableSortLabelClasses, TextField, Button,
+    Tooltip, tableSortLabelClasses, TextField, Button, Typography,
 } from "@mui/material";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Actor} from "../../models/Actor";
-import {TvSerie} from "../../models/TvSerie";
 import {Payment} from "../../models/Payment";
 import {BACKEND_API_URL} from "../../constants";
 import AddIcon from "@mui/icons-material/Add";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import axios from "axios"
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {Details} from "@mui/icons-material";
 
 
 export const AllPayments = () => {
@@ -115,12 +110,13 @@ export const AllPayments = () => {
                                             <EditIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details/`}>
                                             <ReadMoreIcon/>
                                         </IconButton>
 
                                         <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
+                                            <Typography variant="subtitle2" sx={{color: "red"}}>${payment.id}</Typography>
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>

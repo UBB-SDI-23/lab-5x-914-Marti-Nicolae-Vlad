@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import {useEffect, useState} from "react";
 import {BACKEND_API_URL} from "../../constants";
-import {Payment} from "../../models/Director";
+import {Director} from "../../models/Director";
 import {Link, useParams} from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -20,7 +20,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export const Filter1 = () => {
     const [loading, setLoading] = useState(false);
-    const [directors, setDirectors] = useState<Payment[]>([]);
+    const [directors, setDirectors] = useState<Director[]>([]);
     // const [stats, setStats] = useState<Stat1Type[]>([]);
     const [order, setOrder] = useState("asc");
     const {dirID} = useParams();

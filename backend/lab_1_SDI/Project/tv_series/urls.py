@@ -3,7 +3,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 from ..tv_series import views
 from .views import * # TvSeriesList, TvSerieRatingFilter, ActorsList, DirestorsList, PaymentsList, Statistics, \
-from backend.lab_1_SDI.Project.tv_series.views import TvSeriesList, TvSerieRatingFilter, ActorsList
 
 #ManyStatistics
 

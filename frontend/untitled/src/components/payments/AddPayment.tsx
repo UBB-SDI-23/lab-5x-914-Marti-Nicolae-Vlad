@@ -22,7 +22,7 @@ export const AddPayment = () => {
         phone_number: "12345678",
         email: "abc"
     }
-    const first_actor: Director = {
+    const first_actor: Actor = {
         name: "Act1",
         age: 30,
         nr_awards: 30,

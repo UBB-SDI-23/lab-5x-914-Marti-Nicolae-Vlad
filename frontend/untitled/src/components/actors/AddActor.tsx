@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, IconButton, TextField } from "@mui/material";
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import { Actor } from "../../models/Actor";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

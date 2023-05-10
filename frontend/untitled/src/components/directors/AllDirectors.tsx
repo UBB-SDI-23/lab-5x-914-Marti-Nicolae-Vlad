@@ -118,9 +118,6 @@ export const AllDirectors = () => {
                                         {index + 1}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {/*<Link to={`/director/${director.id}/`} title="View director details">*/}
-                                        {/*    {director.name}*/}
-                                        {/*</Link>*/}
                                         {director.name}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
@@ -135,18 +132,7 @@ export const AllDirectors = () => {
                                     <TableCell component="th" scope="row" align="center">
                                         {director.email}
                                     </TableCell>
-                                    {/*<TableCell component="th" scope="row" align="center">*/}
-                                    {/*    {director.transmission_type}*/}
-                                    {/*</TableCell>*/}
                                         <TableCell align="right">
-                                        {/*<IconButton*/}
-                                        {/*    component={Link}*/}
-                                        {/*    sx={{mr: 3}}*/}
-                                        {/*    to={`/cars/${director.id}/details`}>*/}
-                                        {/*    <Tooltip title="View director details" arrow>*/}
-                                        {/*        <ReadMoreIcon color="primary"/>*/}
-                                        {/*    </Tooltip>*/}
-                                        {/*</IconButton>*/}
 
                                         <IconButton component={Link} sx={{mr: 3}} to={`/directors/${director.id}/edit`}>
                                             <EditIcon/>

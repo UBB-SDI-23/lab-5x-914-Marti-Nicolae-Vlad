@@ -14,9 +14,7 @@ export const DetailsPayment = () => {
 
 	useEffect(() => {
 		const fetchEmployeeProject = async () => {
-			// TODO: use axios instead of fetch
-			// TODO: handle errors
-			// TODO: handle loading state
+
             console.log(payID);
 			alert(payID)
 			const response = await fetch(`${BACKEND_API_URL}/payments/${payID}/`);
@@ -24,7 +22,7 @@ export const DetailsPayment = () => {
 			setPayment(employeeProject);
 		};
 		fetchEmployeeProject();
-	}, [payID]);
+	}, );
 
 
 	return (
@@ -32,7 +30,7 @@ export const DetailsPayment = () => {
 			<Card>
 				<CardContent>
 					<Toolbar>
-						<IconButton component={Link} sx={{ mr: 3 }} to={`/payments`}>
+						<IconButton component={Link} sx={{ mr: 3 }} to={`/payments/`}>
 							<ArrowBackIcon />
 						</IconButton>{" "}
 					</Toolbar>
@@ -43,11 +41,11 @@ export const DetailsPayment = () => {
 					<p>Days Worked: {payment?.days_worked}</p>
 				</CardContent>
 				<CardActions>
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/payments/${payID}/edit`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/payments/${payID}/edit/`}>
 						<EditIcon />
 					</IconButton>
 
-					<IconButton component={Link} sx={{ mr: 3 }} to={`/payments/${payID}/delete`}>
+					<IconButton component={Link} sx={{ mr: 3 }} to={`/payments/${payID}/delete/`}>
 						<DeleteForeverIcon sx={{ color: "red" }} />
 					</IconButton>
 				</CardActions>

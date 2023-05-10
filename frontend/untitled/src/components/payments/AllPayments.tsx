@@ -40,13 +40,6 @@ export const AllPayments = () => {
                 setPayments(data);
                 setLoading(false);
             })
-
-        // axios.get(`${BACKEND_API_URL}/cars`)
-        //     .then(async (response) => {
-        //         const json = await response.json();
-        //         setCars(json.data);
-        //     })
-        //     .finally(() => setLoading(false))
     }, []);
     const sorting = () => {
         if (order === "asc") {
@@ -107,9 +100,6 @@ export const AllPayments = () => {
                                         {index + 1}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {/*<Link to={`/cars/${payment.id}/details`} title="View payment details">*/}
-                                        {/*    {payment.model}*/}
-                                        {/*</Link>*/}
                                         {payment.actor_id}
                                     </TableCell>
                                     <TableCell component="th" scope="row" align="center">
@@ -121,18 +111,17 @@ export const AllPayments = () => {
                                     <TableCell component="th" scope="row" align="center">
                                         {payment.days_worked}
                                     </TableCell>
-
                                         <TableCell align="right">
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit/`}>
                                             <EditIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details/`}>
                                             <ReadMoreIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete/`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
                                         </IconButton>
                                     </TableCell>

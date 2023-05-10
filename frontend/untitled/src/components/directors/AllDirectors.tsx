@@ -31,7 +31,6 @@ export const AllDirectors = () => {
     useEffect(() => {
         setLoading(true);
         fetch(`${BACKEND_API_URL}/directors/`)
-        // fetch(`../api/directors/`)
             .then(async (response) => (await response.json()).data)
             .then((data) => {
                 setDirectors(data);
@@ -88,14 +87,7 @@ export const AllDirectors = () => {
                         <AddIcon color="primary"/>
                     </Tooltip>
                 </IconButton>
-
-
-
-
             )}
-
-
-
             {!loading && directors.length > 0 && (
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -107,7 +99,6 @@ export const AllDirectors = () => {
                                 <TableCell align="center">Residence</TableCell>
                                 <TableCell align="center">Phone Number</TableCell>
                                 <TableCell align="center">Email</TableCell>
-                                {/*<TableCell align="center">Transmission Type</TableCell>*/}
                                 <TableCell align="center">Operations</TableCell>
                             </TableRow>
                         </TableHead>

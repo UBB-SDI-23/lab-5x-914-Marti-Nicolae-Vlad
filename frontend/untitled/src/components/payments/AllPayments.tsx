@@ -88,8 +88,6 @@ export const AllPayments = () => {
                                 <TableCell align="center">Tv Serie</TableCell>
                                 <TableCell align="center">Salary</TableCell>
                                 <TableCell align="center">Days Worked</TableCell>
-                                {/*<TableCell align="center">Email</TableCell>*/}
-                                {/*<TableCell align="center">Transmission Type</TableCell>*/}
                                 <TableCell align="center">Operations</TableCell>
                             </TableRow>
                         </TableHead>
@@ -113,15 +111,15 @@ export const AllPayments = () => {
                                     </TableCell>
                                         <TableCell align="right">
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit/`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/edit`}>
                                             <EditIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details/`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/details`}>
                                             <ReadMoreIcon/>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete/`}>
+                                        <IconButton component={Link} sx={{mr: 3}} to={`/payments/${payment.id}/delete`}>
                                             <DeleteForeverIcon sx={{color: "red"}}/>
                                         </IconButton>
                                     </TableCell>

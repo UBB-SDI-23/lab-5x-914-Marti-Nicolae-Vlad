@@ -16,7 +16,7 @@ export const DetailsPayment = () => {
 		const fetchEmployeeProject = async () => {
 
             console.log(payID);
-			alert(payID)
+			alert(payID);
 			const response = await fetch(`${BACKEND_API_URL}/payments/${payID}/`);
 			const employeeProject = await response.json();
 			setPayment(employeeProject);

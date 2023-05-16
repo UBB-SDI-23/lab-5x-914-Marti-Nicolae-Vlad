@@ -7,24 +7,24 @@ import { Director } from "../../models/Director";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {dark} from "@mui/material/styles/createPalette";
 
 export const DetailsDirector = () => {
+    const [loading, setLoading] = useState(false);
 	const { dirID } = useParams();
 	const [director, setDirector] = useState<Director>();
 
 	useEffect(() => {
-		const fetchEmployeeProject = async () => {
-			// TODO: use axios instead of fetch
-			// TODO: handle errors
-			// TODO: handle loading state
-            console.log(dirID);
-			alert(dirID)
-			const response = await fetch(`${BACKEND_API_URL}/directors/${dirID}`);
-			const employeeProject = await response.json();
-			setDirector(employeeProject);
-		};
-		fetchEmployeeProject();
-	}, [dirID]);
+		setLoading(true);
+		console.log(dirID);
+		alert(dirID);
+		fetch(`${BACKEND_API_URL}/directors/${dirID}/`)
+			.then(async (response) => (await response.json()).data)
+			.then((data)=>{
+				setDirector(data);
+				setLoading(false);
+			})
+	}, []);
 
 
 	return (
